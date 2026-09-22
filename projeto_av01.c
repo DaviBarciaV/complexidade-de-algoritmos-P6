@@ -524,12 +524,25 @@ void executarFuncao2(void)
 
     printf("\nFUNCAO 2 - Analise de Pares em Matriz Triangular\n");
     printf("(Calculo de tempo do projeto: n = 500)\n");
-    n = lerInteiro("Ordem n da matriz (n x n): ", 1);
 
     modo = escolherPreenchimento();
 
-    A = criarMatriz(n, n);
-    preencherMatriz(A, n, n, modo, 100, "A");
+    if (modo == 2) {
+        /* Preenchimento automatico: usa a funcao exigida no topico ATENCAO 1.
+           A Funcao 2 exige matriz quadrada, entao linhas deve ser igual a colunas. */
+        int linhas, colunas;
+        A = criarEPreencherArranjoAleatorio(&linhas, &colunas);
+        while (linhas != colunas) {
+            printf("A Funcao 2 exige matriz quadrada (linhas = colunas). Tente novamente.\n");
+            liberarMatriz(A, linhas);
+            A = criarEPreencherArranjoAleatorio(&linhas, &colunas);
+        }
+        n = linhas;
+    } else {
+        n = lerInteiro("Ordem n da matriz (n x n): ", 1);
+        A = criarMatriz(n, n);
+        preencherMatriz(A, n, n, modo, 100, "A");
+    }
 
     imprimirMatriz("A", A, n, n);
 

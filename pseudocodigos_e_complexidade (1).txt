@@ -337,10 +337,13 @@ OBSERVAÇÕES SOBRE O PROGRAMA
     free(), portanto qualquer dimensão informada pelo usuário funciona,
     inclusive os tamanhos pedidos nos cálculos de tempo.
 
- 2. O menu principal oferece as 5 funções, mais a opção 6, que corresponde ao
-    item do tópico ATENÇÃO: ela pergunta quantas linhas e quantas colunas o
-    arranjo deve ter, cria a matriz dinâmica e preenche tudo com valores
-    aleatórios.
+ 2. A função criarEPreencherArranjoAleatorio() atende ao item 1 do tópico
+    ATENÇÃO: ela pergunta quantas linhas e quantas colunas o arranjo deve ter,
+    cria a matriz dinâmica e preenche tudo com valores aleatórios. Ela é usada
+    pela Função 2 quando o usuário escolhe o preenchimento AUTOMÁTICO (como a
+    Função 2 exige matriz quadrada, o programa pede novamente se linhas for
+    diferente de colunas) e também pode ser executada sozinha pela opção 6 do
+    menu principal.
 
  3. Sempre que uma das 5 funções é escolhida, o programa pergunta se o
     preenchimento do arranjo deve ser MANUAL ou AUTOMÁTICO (aleatório), e em
@@ -362,3 +365,12 @@ OBSERVAÇÕES SOBRE O PROGRAMA
     a busca binária só funciona em vetor ordenado (o enunciado informa que B já
     chega ordenado; a ordenação é apenas uma preparação dos dados de teste e,
     por isso, não entra na análise de complexidade).
+
+ 8. Sobre o item 3 do tópico ATENÇÃO (VLA): optamos por matrizes alocadas
+    dinamicamente com malloc() (ponteiro para ponteiro) em vez de VLA. Uma VLA
+    é criada na pilha (stack) do programa, que costuma ter apenas alguns MB
+    (cerca de 1 MB no Windows e 8 MB no Linux). Os tamanhos pedidos nos
+    cálculos de tempo não caberiam nela: só na Função 3 (n = 300), cada arranjo
+    n x n x n ocupa 300^3 * 4 bytes = 108 MB, e na Função 5 (n = 10.000.000)
+    cada vetor ocupa 40 MB. Com malloc() a memória vem do heap, que não tem
+    essa limitação, então o programa funciona com qualquer dimensão informada.

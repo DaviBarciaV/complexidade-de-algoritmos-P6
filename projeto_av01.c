@@ -25,7 +25,7 @@ as dimensoes pedidas no "Calculo de Tempo" de cada questao.
  SECAO 1 - FUNCOES AUXILIARES (NAO AVALIADAS / SEM ANALISE DE COMPLEXIDADE)
  */
 
-/* Limpa a tela do terminal (cls no Windows, clear no Linux/macOS) */
+/* Limpa a tela do terminal*/
 void limparTela(void)
 {
     fflush(stdout); /* garante que nada pendente seja impresso depois da limpeza */
@@ -319,7 +319,7 @@ void imprimirCubo(const char *nome, int ***C, int n)
 }
 
 /*
- *  SECAO 2 - AS 5 FUNCOES AVALIADAS (analise de complexidade no arquivo .txt)
+ SECAO 2 - AS 5 FUNCOES AVALIADAS (analise de complexidade)
  */
 
 /*

@@ -25,6 +25,17 @@ as dimensoes pedidas no "Calculo de Tempo" de cada questao.
  SECAO 1 - FUNCOES AUXILIARES (NAO AVALIADAS / SEM ANALISE DE COMPLEXIDADE)
  */
 
+/* Limpa a tela do terminal (cls no Windows, clear no Linux/macOS) */
+void limparTela(void)
+{
+    fflush(stdout); /* garante que nada pendente seja impresso depois da limpeza */
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 /* Le um inteiro garantindo que ele seja >= minimo */
 int lerInteiro(const char *mensagem, int minimo)
 {
@@ -673,7 +684,10 @@ int main(void)
 
     srand((unsigned int) time(NULL));
 
+    limparTela();
+
     do {
+        printf("\n==========================================================\n");
         printf("MENU PRINCIPAL\n");
         printf("1 - Funcao 1: Contagem de Ocorrencias Distintas\n");
         printf("2 - Funcao 2: Analise de Pares em Matriz Triangular\n");
@@ -684,6 +698,9 @@ int main(void)
         printf("7 - Mostrar os integrantes do grupo\n");
         printf("0 - Sair\n");
         opcao = lerInteiro("Opcao: ", 0);
+
+        /* Apaga o menu (e a saida anterior) antes de executar a opcao */
+        limparTela();
 
         switch (opcao) {
             case 1: executarFuncao1(); break;
